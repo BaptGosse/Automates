@@ -135,4 +135,4 @@ mvn clean javafx:run
 
 ## 🎓 Contexte
 
-Projet développé dans le cadre du cours de Mathématiques R4-A-12 sur les automates et langages formels.
+Projet développé en parallèle du cours de Mathématiques R4.12 sur les automates et langages formels, et basé sur le cours de M. Secouard, professeur à l'IUT Grand Ouest Normandie (https://iut-grand-ouest-normandie.unicaen.fr/), une composante de l'Université de Caen Normandie (https://www.unicaen.fr/). C'est ainsi que je remercie M. Secouard pour ses cours, qui me permettent de créer cette application. Je précise que les cours ne sont pas accessibles ici, sur ce repo GitHub, tant que je n'ai pas l'accord de M. Secouard, et par respect pour son travail.
