@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="fr.baptgosse.automates.ui.controllers.MainWindowController"
+            prefHeight="700.0" prefWidth="1200.0"
+            stylesheets="@../css/styles.css">
+
+    <!-- Menu Bar -->
+    <top>
+        <VBox>
+            <MenuBar fx:id="menuBar">
+                <Menu text="Fichier">
+                    <MenuItem text="Nouveau" onAction="#handleNew"/>
+                    <MenuItem text="Ouvrir..." onAction="#handleOpen"/>
+                    <MenuItem text="Enregistrer..." onAction="#handleSave"/>
+                    <SeparatorMenuItem/>
+                    <MenuItem text="Exporter en PNG..." onAction="#handleExportPNG"/>
+                    <MenuItem text="Exporter en SVG..." onAction="#handleExportSVG"/>
+                    <SeparatorMenuItem/>
+                    <MenuItem text="Quitter" onAction="#handleExit"/>
+                </Menu>
+
+                <Menu text="Édition">
+                    <MenuItem text="Tout effacer" onAction="#handleClear"/>
+                    <SeparatorMenuItem/>
+                    <MenuItem text="Annuler" onAction="#handleUndo" disable="true"/>
+                    <MenuItem text="Rétablir" onAction="#handleRedo" disable="true"/>
+                </Menu>
+
+                <Menu text="Automate">
+                    <MenuItem text="Déterminiser" onAction="#handleDeterminize" disable="true"/>
+                    <MenuItem text="Minimiser" onAction="#handleMinimize" disable="true"/>
+                    <MenuItem text="Compléter" onAction="#handleComplete" disable="true"/>
+                    <SeparatorMenuItem/>
+                    <MenuItem text="Tester un mot..." onAction="#handleTestWord" disable="true"/>
+                </Menu>
+
+                <Menu text="Aide">
+                    <MenuItem text="Documentation" onAction="#handleDocumentation"/>
+                    <MenuItem text="À propos" onAction="#handleAbout"/>
+                </Menu>
+            </MenuBar>
+
+            <!-- Toolbar -->
+            <ToolBar fx:id="toolBar">
+                <ToggleButton fx:id="selectBtn" text="Sélection" selected="true" onAction="#handleSelectTool">
+                    <toggleGroup>
+                        <ToggleGroup fx:id="toolGroup"/>
+                    </toggleGroup>
+                </ToggleButton>
+
+                <Separator orientation="VERTICAL"/>
+
+                <ToggleButton fx:id="addStateBtn" text="Ajouter État" toggleGroup="$toolGroup" onAction="#handleAddStateTool"/>
+                <ToggleButton fx:id="addTransitionBtn" text="Ajouter Transition" toggleGroup="$toolGroup" onAction="#handleAddTransitionTool"/>
+
+                <Separator orientation="VERTICAL"/>
+
+                <Button text="Supprimer" onAction="#handleDelete"/>
+
+                <Separator orientation="VERTICAL"/>
+
+                <Button text="Définir Initial" onAction="#handleSetInitial"/>
+                <Button text="Définir Acceptant" onAction="#handleSetAccepting"/>
+            </ToolBar>
+        </VBox>
+    </top>
+
+    <!-- Center: SplitPane with Canvas and Right Panel -->
+    <center>
+        <SplitPane fx:id="mainSplitPane" dividerPositions="0.65">
+            <!-- Canvas Container -->
+            <AnchorPane fx:id="canvasContainer">
+                <!-- Le canvas sera ajouté dynamiquement -->
+            </AnchorPane>
+
+            <!-- Right Panel with Tabs -->
+            <TabPane fx:id="rightTabPane" tabClosingPolicy="UNAVAILABLE" minWidth="400" prefWidth="450">
+                <Tab text="Table de Transitions">
+                    <VBox fx:id="tableContainer">
+                        <!-- TransitionTableView sera ajouté ici -->
+                    </VBox>
+                </Tab>
+
+                <Tab text="Informations">
+                    <ScrollPane fitToWidth="true">
+                        <VBox fx:id="infoContainer">
+                            <!-- AutomatonInfoPanel sera ajouté ici -->
+                        </VBox>
+                    </ScrollPane>
+                </Tab>
+            </TabPane>
+        </SplitPane>
+    </center>
+
+    <!-- Status Bar -->
+    <bottom>
+        <HBox styleClass="status-bar" spacing="10" alignment="CENTER_LEFT">
+            <padding>
+                <Insets top="5" right="10" bottom="5" left="10"/>
+            </padding>
+            <Label fx:id="statusLabel" text="Prêt"/>
+            <Region HBox.hgrow="ALWAYS"/>
+            <Label fx:id="statusInfoLabel" text=""/>
+        </HBox>
+    </bottom>
+</BorderPane>
