@@ -1,0 +1,266 @@
+// ============================================================================
+// AMDL Examples - Collection d'automates de démonstration
+// ============================================================================
+
+// ----------------------------------------------------------------------------
+// Exemple 1 : Automate simple - Mots se terminant par 'a'
+// ----------------------------------------------------------------------------
+
+Automaton "Se termine par a" [
+  type: "DFA",
+  description: "Accepte les mots se terminant par 'a'"
+] {
+  alphabet: [a, b]
+  
+  State q0 [initial] at (150, 200)
+  State q1 [accepting] at (350, 200)
+  
+  q0 -> q1 [a]
+  q0 -> q0 [b]
+  q1 -> q1 [a]
+  q1 -> q0 [b]
+}
+
+// ----------------------------------------------------------------------------
+// Exemple 2 : Compteur modulo 3
+// ----------------------------------------------------------------------------
+
+Automaton "Compteur mod 3" [
+  type: "DFA",
+  description: "Accepte les nombres binaires divisibles par 3"
+] {
+  alphabet: [0, 1]
+  
+  State q0 [initial, accepting] at (250, 100) {
+    label: "Reste 0"
+  }
+  
+  State q1 at (100, 300) {
+    label: "Reste 1"
+  }
+  
+  State q2 at (400, 300) {
+    label: "Reste 2"
+  }
+  
+  // Transitions depuis q0
+  q0 -> q0 [0]
+  q0 -> q1 [1]
+  
+  // Transitions depuis q1
+  q1 -> q2 [0]
+  q1 -> q0 [1]
+  
+  // Transitions depuis q2
+  q2 -> q1 [0]
+  q2 -> q2 [1]
+}
+
+// ----------------------------------------------------------------------------
+// Exemple 3 : Reconnaissance de motif
+// ----------------------------------------------------------------------------
+
+Automaton "Motif ab ou ba" {
+  alphabet: [a, b]
+  
+  State start [initial] at (100, 250)
+  State seen_a at (250, 150)
+  State seen_b at (250, 350)
+  State accept_ab [accepting] at (400, 150)
+  State accept_ba [accepting] at (400, 350)
+  
+  // Depuis start
+  start -> seen_a [a]
+  start -> seen_b [b]
+  
+  // Chemins acceptants
+  seen_a -> accept_ab [b]
+  seen_b -> accept_ba [a]
+  
+  // Boucles sur états acceptants
+  accept_ab -> accept_ab [a, b]
+  accept_ba -> accept_ba [a, b]
+}
+
+// ----------------------------------------------------------------------------
+// Exemple 4 : Automate avec epsilon-transitions (NFA)
+// ----------------------------------------------------------------------------
+
+Automaton "Epsilon-NFA exemple" [
+  type: "epsilon-NFA"
+] {
+  alphabet: [a, b, ε]
+  
+  State q0 [initial] at (100, 200)
+  State q1 at (250, 150)
+  State q2 at (250, 250)
+  State q3 [accepting] at (400, 200)
+  
+  // Epsilon-transitions
+  q0 -> q1 [ε]
+  q0 -> q2 [ε]
+  
+  // Transitions normales
+  q1 -> q3 [a]
+  q2 -> q3 [b]
+}
+
+// ----------------------------------------------------------------------------
+// Exemple 5 : Validation d'email simple
+// ----------------------------------------------------------------------------
+
+Automaton "Email validator" [
+  description: "Valide le format basique d'un email"
+] {
+  alphabet: [letter, @, dot]
+  
+  State start [initial] at (100, 200) {
+    label: "Début"
+  }
+  
+  State local at (250, 200) {
+    label: "Local part"
+  }
+  
+  State at_sign at (400, 200) {
+    label: "@ vu"
+  }
+  
+  State domain at (550, 200) {
+    label: "Domaine"
+  }
+  
+  State dot_seen at (700, 200) {
+    label: ". vu"
+  }
+  
+  State valid [accepting] at (850, 200) {
+    label: "Valide"
+  }
+  
+  // Construction du local part
+  start -> local [letter]
+  local -> local [letter]
+  
+  // Arobase
+  local -> at_sign [@]
+  
+  // Domaine
+  at_sign -> domain [letter]
+  domain -> domain [letter]
+  
+  // Extension
+  domain -> dot_seen [dot]
+  dot_seen -> valid [letter]
+  valid -> valid [letter]
+}
+
+// ----------------------------------------------------------------------------
+// Exemple 6 : Parenthèses équilibrées (version simplifiée)
+// ----------------------------------------------------------------------------
+
+Automaton "Parenthèses" [
+  description: "Reconnaît (), (()), ((())), etc."
+] {
+  alphabet: ["(", ")"]
+  
+  State q0 [initial, accepting] at (200, 200)
+  State q1 at (400, 200)
+  State q2 at (600, 200)
+  State q3 at (800, 200)
+  
+  // Ouverture
+  q0 -> q1 ["("]
+  q1 -> q2 ["("]
+  q2 -> q3 ["("]
+  
+  // Fermeture
+  q1 -> q0 [")"]
+  q2 -> q1 [")"]
+  q3 -> q2 [")"]
+}
+
+// ----------------------------------------------------------------------------
+// Exemple 7 : NFA - Mot contenant "101"
+// ----------------------------------------------------------------------------
+
+Automaton "Contient 101" [
+  type: "NFA",
+  description: "Accepte tous les mots contenant la sous-séquence 101"
+] {
+  alphabet: [0, 1]
+  
+  State q0 [initial] at (100, 200)
+  State q1 at (250, 200)
+  State q2 at (400, 200)
+  State q3 [accepting] at (550, 200)
+  
+  // Recherche de '1'
+  q0 -> q0 [0, 1]
+  q0 -> q1 [1]
+  
+  // Recherche de '0' après '1'
+  q1 -> q2 [0]
+  
+  // Recherche de '1' après '10'
+  q2 -> q3 [1]
+  
+  // Une fois trouvé, reste acceptant
+  q3 -> q3 [0, 1]
+}
+
+// ----------------------------------------------------------------------------
+// Exemple 8 : Automate complexe avec propriétés visuelles
+// ----------------------------------------------------------------------------
+
+Automaton "Automate coloré" [
+  author: "Baptiste Gosselin",
+  version: "1.0.0"
+] {
+  alphabet: [x, y, z]
+  
+  State s0 [initial] at (150, 250) {
+    label: "Start"
+    color: "#4CAF50"
+  }
+  
+  State s1 at (350, 150) {
+    label: "X path"
+    color: "#2196F3"
+  }
+  
+  State s2 at (350, 350) {
+    label: "Y path"
+    color: "#FF9800"
+  }
+  
+  State s3 [accepting] at (550, 250) {
+    label: "Accept"
+    color: "#F44336"
+  }
+  
+  s0 -> s1 [x] {
+    color: "#2196F3"
+    curved: 0
+  }
+  
+  s0 -> s2 [y] {
+    color: "#FF9800"
+    curved: 0
+  }
+  
+  s1 -> s3 [z] {
+    color: "#9C27B0"
+    curved: 0.2
+  }
+  
+  s2 -> s3 [z] {
+    color: "#9C27B0"
+    curved: -0.2
+  }
+  
+  s3 -> s0 [x, y] {
+    color: "#607D8B"
+    curved: 0.3
+  }
+}

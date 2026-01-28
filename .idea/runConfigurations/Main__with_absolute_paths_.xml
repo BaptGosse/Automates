@@ -1,8 +1,8 @@
 <component name="ProjectRunConfigurationManager">
   <configuration default="false" name="Main (with absolute paths)" type="Application" factoryName="Application">
     <option name="MAIN_CLASS_NAME" value="fr.baptgosse.automates.Main" />
-    <module name="Automates" />
-    <option name="VM_PARAMETERS" value="--module-path /home/baptgosse/.m2/repository/org/openjfx/javafx-controls/23.0.1:/home/baptgosse/.m2/repository/org/openjfx/javafx-fxml/23.0.1:/home/baptgosse/.m2/repository/org/openjfx/javafx-graphics/23.0.1:/home/baptgosse/.m2/repository/org/openjfx/javafx-base/23.0.1 --add-modules javafx.controls,javafx.fxml,javafx.graphics" />
+    <module name="automates-legacy" />
+    <option name="VM_PARAMETERS" value="--module-path $MAVEN_REPOSITORY$/org/openjfx/javafx-controls/23.0.1:$MAVEN_REPOSITORY$/org/openjfx/javafx-fxml/23.0.1:$MAVEN_REPOSITORY$/org/openjfx/javafx-graphics/23.0.1:$MAVEN_REPOSITORY$/org/openjfx/javafx-base/23.0.1 --add-modules javafx.controls,javafx.fxml,javafx.graphics" />
     <extension name="coverage">
       <pattern>
         <option name="PATTERN" value="fr.baptgosse.automates.*" />

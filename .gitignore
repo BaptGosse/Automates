@@ -1,41 +1,71 @@
-target/
-!.mvn/wrapper/maven-wrapper.jar
-!**/src/main/**/target/
-!**/src/test/**/target/
-.kotlin
+# === Backend (Maven/Spring Boot) ===
+backend/target/
+backend/.mvn/
+backend/mvnw
+backend/mvnw.cmd
+backend/.settings/
+backend/.project
+backend/.classpath
+backend/bin/
 
-### IntelliJ IDEA ###
-.idea/modules.xml
-.idea/jarRepositories.xml
-.idea/compiler.xml
-.idea/libraries/
-*.iws
-*.iml
-*.ipr
+# === Frontend (Node.js/Svelte) ===
+frontend/node_modules/
+frontend/build/
+frontend/.svelte-kit/
+frontend/dist/
+frontend/.env
+frontend/.claude/
+frontend/.env.local
+frontend/package-lock.json
 
-### Eclipse ###
-.apt_generated
-.classpath
-.factorypath
-.project
-.settings
-.springBeans
-.sts4-cache
+# === Desktop (Tauri) - À créer ===
+desktop/node_modules/
+desktop/src-tauri/target/
+desktop/src-tauri/resources/backend.jar
+desktop/.svelte-kit/
+desktop/build/
 
-### NetBeans ###
-/nbproject/private/
-/nbbuild/
-/dist/
-/nbdist/
-/.nb-gradle/
-build/
-!**/src/main/**/build/
-!**/src/test/**/build/
+# === Mobile (Capacitor) - À créer ===
+mobile/node_modules/
+mobile/android/
+mobile/ios/
+mobile/dist/
 
-### VS Code ###
+# === Legacy JavaFX ===
+legacy-javafx/target/
+legacy-javafx/.mvn/
+legacy-javafx/.settings/
+legacy-javafx/.project
+legacy-javafx/.classpath
+
+# === IDE ===
+.idea/
 .vscode/
+*.iml
+*.iws
+*.ipr
+*.swp
+*.swo
+*~
 
-### Mac OS ###
+# === Système ===
 .DS_Store
+Thumbs.db
+*.log
+
+# === Claude ===
 .claude/
-src/courses/
+
+# === Builds ===
+*.jar
+*.war
+*.zip
+*.tar.gz
+
+# === Secrets ===
+*.pem
+*.key
+.env.production
+
+# === Cours (privé) ===
+docs/courses/
